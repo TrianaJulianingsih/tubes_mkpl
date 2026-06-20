@@ -5,6 +5,8 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+  release:
+    types: [created]
 
 jobs:
   build:
@@ -68,7 +70,7 @@ jobs:
     name: 4. Continuous Deployment (Deploy)
     needs: code-scan
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.event_name == 'release'
     permissions:
       contents: read
       packages: write
@@ -85,7 +87,6 @@ jobs:
           settings-path: ${{ github.workspace }}
 
       - name: Publish to GitHub Packages
-        run: mvn --batch-mode deploy -DskipTests -s ${{ github.workspace }}/settings.xml
+        run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_ACTOR: ${{ github.actor }}
