@@ -97,11 +97,10 @@ jobs:
           restore-keys: ${{ runner.os }}-sonar
 
       - name: Build & Analyze with SonarCloud
-        # env:
-        #   TUBES_TOKEN: ${{ secrets.TUBES_TOKEN }}
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           mvn -B verify sonar:sonar \
-            -Dsonar.login=${{ secrets.TUBES_TOKEN }} \
             -Dsonar.projectKey=TrianaJulianingsih_tubesmkpl \
             -Dsonar.organization=trianajulianingsih \
             -Dsonar.host.url=https://sonarcloud.io
