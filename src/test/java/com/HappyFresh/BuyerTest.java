@@ -1,6 +1,7 @@
 package com.HappyFresh;
 
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BuyerTest {
@@ -54,10 +55,12 @@ public class BuyerTest {
         );
 
         Product produk = new Product(
-                "P01",
+                "Toko Buah",
                 "Apel",
+                "Buah",
                 10000,
-                10
+                10,
+                "Apel segar"
         );
 
         buyer.beliProduct(produk, 2, 5000, driver);
@@ -84,10 +87,12 @@ public class BuyerTest {
         );
 
         Product produk = new Product(
-                "P01",
+                "Toko Buah",
                 "Apel",
+                "Buah",
                 10000,
-                5
+                5,
+                "Apel segar"
         );
 
         buyer.beliProduct(produk, 10, 5000, driver);
@@ -97,7 +102,7 @@ public class BuyerTest {
     }
 
     @Test
-    void testBeliProdukJumlahNegatif() {
+    void testBeliProdukJumlahNegatif() throws NegativeValueException {
         Buyer buyer = new Buyer(
                 "B01",
                 "Intan",
@@ -114,10 +119,12 @@ public class BuyerTest {
         );
 
         Product produk = new Product(
-                "P01",
+                "Toko Buah",
                 "Apel",
+                "Buah",
                 10000,
-                10
+                10,
+                "Apel segar"
         );
 
         assertThrows(
